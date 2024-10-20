@@ -1,0 +1,170 @@
+/* Reset default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Set the body to a light gray background color */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #e0e0e0; /* Light gray background */
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensures the footer stays at the bottom */
+    align-items: center; /* Center horizontally */
+}
+
+/* Header styles */
+header {
+    background-color: #555; /* Dark gray color for navbar */
+    color: white;
+    padding: 20px 0;
+    width: 100%; /* Full width */
+    text-align: center; /* Center content */
+}
+
+header h1 {
+    margin-bottom: 10px;
+    font-size: 2.5em; /* Larger title size */
+}
+
+/* Navigation styles */
+nav {
+    margin: 10px 0; /* Space above and below nav */
+}
+
+nav ul {
+    list-style: none; /* Remove bullet points */
+    padding: 0; /* Remove padding */
+}
+
+nav ul li {
+    display: inline; /* Display links inline */
+    margin: 0 15px; /* Spacing between links */
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none; /* Remove underline */
+    font-weight: bold; /* Make links bold */
+    transition: color 0.3s; /* Smooth color transition */
+}
+
+nav ul li a:hover {
+    color: #ffdd57; /* Bright yellow on hover */
+}
+
+/* Main content styles */
+main {
+    flex: 1; /* Allow main to expand */
+    display: flex;
+    flex-direction: column; /* Stack sections vertically */
+    align-items: center; /* Center content */
+    padding: 20px;
+}
+
+/* Intro section styles */
+.intro {
+    text-align: center; /* Center text */
+    margin-bottom: 40px; /* Space below intro */
+}
+
+.intro h2 {
+    font-size: 2em; /* Larger subtitle */
+    margin-bottom: 10px; /* Space below subtitle */
+}
+h2 {
+    text-align: center;
+}
+
+button {
+    align-items: center;
+}
+/* Game boxes styles */
+.game-boxes {
+    width: 100%;
+    padding: 20px 0;
+}
+
+.box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive grid */
+    gap: 20px; /* Space between boxes */
+    max-width: 1200px; /* Limit width of the grid */
+    margin: 0 auto; /* Center the grid */
+}
+
+.game-box {
+    background-color: white; /* White background for game boxes */
+    border: 1px solid #ddd; /* Light gray border */
+    border-radius: 8px; /* Rounded corners */
+    overflow: hidden; /* Clip overflow */
+    text-align: center; /* Center text */
+    padding: 10px; /* Padding inside the box */
+    transition: transform 0.2s, box-shadow 0.2s; /* Smooth scale effect and shadow */
+}
+
+.game-box img {
+    max-width: 100%; /* Responsive image */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.game-box:hover {
+    transform: scale(1.05); /* Scale up on hover */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+}
+
+/* Community Highlights styles */
+.community-highlights {
+    text-align: center; /* Center text */
+    margin: 40px 0; /* Space above and below */
+}
+
+.community-highlights ul {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0; /* Remove padding */
+}
+
+.call-to-action button {
+    background-color: #555; /* Button color */
+    color: white;
+    border: none; /* No border */
+    padding: 10px 20px; /* Button padding */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor */
+    font-size: 16px; /* Button font size */
+    transition: background-color 0.3s; /* Smooth background color transition */
+    display: block; /* Make button a block-level element */
+    margin: 0 auto; /* Center the button */
+}
+
+
+.call-to-action h2 {
+    margin-bottom: 10px; /* Space below the title */
+}
+
+.call-to-action button {
+    background-color: #555; /* Button color */
+    color: white;
+    border: none; /* No border */
+    padding: 10px 20px; /* Button padding */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor */
+    font-size: 16px; /* Button font size */
+    transition: background-color 0.3s; /* Smooth background color transition */
+}
+
+.call-to-action button:hover {
+    background-color: #777; /* Darker shade on hover */
+}
+
+/* Footer styles */
+footer {
+    background-color: #555; /* Same gray color for footer */
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    width: 100%; /* Full width */
+}
