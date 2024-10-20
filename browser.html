@@ -25,43 +25,86 @@
             <h2>Your Source for Game Saves</h2>
             <p>Upload, share, and browse game saves with ease. Join our community of gamers!</p>
         </section>
+        
+        <!-- Search Section -->
+        <section class="search-section">
+            <h2>Search Game Saves</h2>
+            <form id="search-form" onsubmit="return searchGames(event);">
+                <input type="text" id="search-input" placeholder="Search for a game..." required>
+                <button type="submit">Search</button>
+            </form>
+        </section>
+
+        <!-- Platform Filter Section -->
+        <section class="platform-filter">
+            <h2>Filter by Platform</h2>
+            <label for="platform">Choose a platform:</label>
+            <select id="platform" onchange="filterByPlatformAndType()">
+                <option value="all">All Platforms</option>
+                <option value="ps">PlayStation</option>
+                <option value="ps2">PlayStation 2</option>
+                <option value="ps3">PlayStation 3</option>
+                <option value="xbox">Xbox</option>
+                <option value="xbox360">Xbox 360</option>
+                <option value="pc">PC</option>
+            </select>
+        </section>
+
+        <!-- Game Type Filter Section -->
+        <section class="game-type-filter">
+            <h2>Filter by Game Type</h2>
+            <label for="game-type">Choose a game type:</label>
+            <select id="game-type" onchange="filterByPlatformAndType()">
+                <option value="all">All Game Types</option>
+                <option value="action">Action</option>
+                <option value="racing">Racing</option>
+                <option value="rpg">RPG</option>
+                <option value="adventure">Adventure</option>
+                <option value="puzzle">Puzzle</option>
+            </select>
+
+            <label for="mod-status">Mod Status:</label>
+            <select id="mod-status" onchange="filterByModStatus()">
+                <option value="all">All Saves</option>
+                <option value="modded">Modded</option>
+                <option value="non-modded">Non-Modded</option>
+            </select>
+        </section>
+
         <section class="game-boxes">
             <h2>Latest Game Saves</h2>
             <div class="box-container">
-                <div class="game-box">
+                <div class="game-box" data-platform="ps" data-type="action" data-modded="non-modded">
                     <img src="game1.jpg" alt="Game 1">
-                    <h3>Game Title 1</h3>
+                    <h3>Game Title 1 (PS) - Action (Non-Modded)</h3>
                 </div>
-                <div class="game-box">
+                <div class="game-box" data-platform="ps2" data-type="racing" data-modded="modded">
                     <img src="game2.jpg" alt="Game 2">
-                    <h3>Game Title 2</h3>
+                    <h3>Game Title 2 (PS2) - Racing (Modded)</h3>
                 </div>
-                <div class="game-box">
+                <div class="game-box" data-platform="ps3" data-type="rpg" data-modded="non-modded">
                     <img src="game3.jpg" alt="Game 3">
-                    <h3>Game Title 3</h3>
+                    <h3>Game Title 3 (PS3) - RPG (Non-Modded)</h3>
                 </div>
-                <div class="game-box">
+                <div class="game-box" data-platform="xbox" data-type="adventure" data-modded="modded">
                     <img src="game4.jpg" alt="Game 4">
-                    <h3>Game Title 4</h3>
+                    <h3>Game Title 4 (Xbox) - Adventure (Modded)</h3>
                 </div>
-                <div class="game-box">
+                <div class="game-box" data-platform="xbox360" data-type="puzzle" data-modded="non-modded">
                     <img src="game5.jpg" alt="Game 5">
-                    <h3>Game Title 5</h3>
+                    <h3>Game Title 5 (Xbox 360) - Puzzle (Non-Modded)</h3>
                 </div>
-                <div class="game-box">
+                <div class="game-box" data-platform="pc" data-type="action" data-modded="modded">
                     <img src="game6.jpg" alt="Game 6">
-                    <h3>Game Title 6</h3>
+                    <h3>Game Title 6 (PC) - Action (Modded)</h3>
                 </div>
             </div>
         </section>
-        <section class="call-to-action">
-            <h2>Join Our Community!</h2>
-            <p>Become a part of our growing community! Upload your own game saves and help others enjoy their gaming experience.</p>
-            <button onclick="location.href='upload.html'">Upload Your Save</button>
-        </section>
     </main>
     <footer>
-        <p>&copy; 2024 GameSaves. All rights reserved.</p>
+        <p>&copy; 2024 stuffbymax | Martin Petik MIT License.</p>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>

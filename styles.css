@@ -168,3 +168,19 @@ footer {
     padding: 10px 0;
     width: 100%; /* Full width */
 }
+.platform-filter {
+    margin: 20px 0;
+}
+
+.platform-filter select {
+    padding: 10px;
+    font-size: 16px;
+}
+.game-type-filter {
+    margin: 20px 0;
+}
+
+.game-type-filter select {
+    padding: 10px;
+    font-size: 16px;
+}
