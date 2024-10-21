@@ -50,17 +50,28 @@
             </select>
         </section>
 
+        <!-- Game Category Filter Section -->
+        <section class="game-category-filter">
+            <h2>Filter by Game Category</h2>
+            <label for="game-category">Choose a game category:</label>
+            <select id="game-category" onchange="filterByPlatformAndType()">
+                <option value="all">All Game Categories</option>
+                <option value="action">Action</option>
+                <option value="racing">Racing</option>
+                <option value="rpg">RPG</option>
+                <option value="adventure">Adventure</option>
+                <option value="puzzle">Puzzle</option>
+            </select>
+        </section>
+
         <!-- Game Type Filter Section -->
         <section class="game-type-filter">
             <h2>Filter by Game Type</h2>
             <label for="game-type">Choose a game type:</label>
             <select id="game-type" onchange="filterByPlatformAndType()">
                 <option value="all">All Game Types</option>
-                <option value="action">Action</option>
-                <option value="racing">Racing</option>
-                <option value="rpg">RPG</option>
-                <option value="adventure">Adventure</option>
-                <option value="puzzle">Puzzle</option>
+                <option value="single-player">Single Player</option> 
+                <option value="multiplayer">Multiplayer</option> 
             </select>
 
             <label for="mod-status">Mod Status:</label>
@@ -74,29 +85,29 @@
         <section class="game-boxes">
             <h2>Latest Game Saves</h2>
             <div class="box-container">
-                <div class="game-box" data-platform="ps" data-type="action" data-modded="non-modded">
+                <div class="game-box" data-platform="ps" data-category="action" data-type="single-player" data-modded="non-modded">
                     <img src="game1.jpg" alt="Game 1">
-                    <h3>Game Title 1 (PS) - Action (Non-Modded)</h3>
+                    <h3>Game Title 1 (PS) - Action (Single Player, Non-Modded)</h3>
                 </div>
-                <div class="game-box" data-platform="ps2" data-type="racing" data-modded="modded">
+                <div class="game-box" data-platform="ps2" data-category="racing" data-type="multiplayer" data-modded="modded">
                     <img src="game2.jpg" alt="Game 2">
-                    <h3>Game Title 2 (PS2) - Racing (Modded)</h3>
+                    <h3>Game Title 2 (PS2) - Racing (Multiplayer, Modded)</h3>
                 </div>
-                <div class="game-box" data-platform="ps3" data-type="rpg" data-modded="non-modded">
+                <div class="game-box" data-platform="ps3" data-category="rpg" data-type="single-player" data-modded="non-modded">
                     <img src="game3.jpg" alt="Game 3">
-                    <h3>Game Title 3 (PS3) - RPG (Non-Modded)</h3>
+                    <h3>Game Title 3 (PS3) - RPG (Single Player, Non-Modded)</h3>
                 </div>
-                <div class="game-box" data-platform="xbox" data-type="adventure" data-modded="modded">
+                <div class="game-box" data-platform="xbox" data-category="adventure" data-type="multiplayer" data-modded="modded">
                     <img src="game4.jpg" alt="Game 4">
-                    <h3>Game Title 4 (Xbox) - Adventure (Modded)</h3>
+                    <h3>Game Title 4 (Xbox) - Adventure (Multiplayer, Modded)</h3>
                 </div>
-                <div class="game-box" data-platform="xbox360" data-type="puzzle" data-modded="non-modded">
+                <div class="game-box" data-platform="xbox360" data-category="puzzle" data-type="single-player" data-modded="non-modded">
                     <img src="game5.jpg" alt="Game 5">
-                    <h3>Game Title 5 (Xbox 360) - Puzzle (Non-Modded)</h3>
+                    <h3>Game Title 5 (Xbox 360) - Puzzle (Single Player, Non-Modded)</h3>
                 </div>
-                <div class="game-box" data-platform="pc" data-type="action" data-modded="modded">
+                <div class="game-box" data-platform="pc" data-category="action" data-type="multiplayer" data-modded="modded">
                     <img src="game6.jpg" alt="Game 6">
-                    <h3>Game Title 6 (PC) - Action (Modded)</h3>
+                    <h3>Game Title 6 (PC) - Action (Multiplayer, Modded)</h3>
                 </div>
             </div>
         </section>
