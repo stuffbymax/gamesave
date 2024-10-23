@@ -1,0 +1,184 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #A9A9A9;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    align-items: center;
+}
+
+header {
+    background-color: #555;
+    color: white;
+    padding: 20px 0;
+    width: 100%;
+    text-align: center;
+}
+
+header h1 {
+    margin-bottom: 10px;
+    font-size: 2.5em;
+}
+
+nav {
+    margin: 10px 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #0000FF;
+}
+
+.container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.intro {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.intro h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+p {
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+button {
+    display: inline-block;
+}
+
+.game-boxes {
+    width: 100%;
+    padding: 20px 0;
+}
+
+.box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive grid */
+    gap: 20px; /* Space between grid items */
+    max-width: 1200px; /* Maximum width for the container */
+    margin: 0 auto; /* Center the container */
+    padding: 20px; /* Add padding around the grid */
+    justify-content: center; /* Center the grid items */
+}
+
+.game-box {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: center;
+    padding: 10px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.game-box img {
+    max-width: 100%;
+    height: auto;
+}
+
+.game-box:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.community-highlights {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.community-highlights ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.call-to-action h2 {
+    margin-bottom: 10px;
+}
+
+.call-to-action button {
+    background-color: #555;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    display: block;
+    margin: 0 auto;
+}
+
+.call-to-action button:hover {
+    background-color: #777;
+}
+
+footer {
+    background-color: #555;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+}
+
+.platform-filter, .game-category-filter, .game-type-filter, .game-mod-filter {
+    margin: 20px 0;
+    width: 100%;
+    max-width: 600px; /* Limit the width for better readability */
+}
+
+.platform-filter select,
+.game-category-filter select,
+.game-type-filter select,
+.game-mod-filter select {
+    padding: 10px;
+    font-size: 16px;
+    width: 100%; /* Full width for better UX */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+
+.platform-filter select:focus,
+.game-category-filter select:focus,
+.game-type-filter select:focus,
+.game-mod-filter select:focus {
+    border-color: #555; 
+}
