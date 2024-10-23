@@ -1,88 +1,87 @@
-/* Reset default margin and padding */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Set the body to a light gray background color */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #e0e0e0; /* Light gray background */
+    background-color: #A9A9A9;
     color: #333;
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Ensures the footer stays at the bottom */
-    align-items: center; /* Center horizontally */
+    min-height: 100vh;
+    align-items: center;
 }
 
-/* Header styles */
 header {
-    background-color: #555; /* Dark gray color for navbar */
+    background-color: #555;
     color: white;
     padding: 20px 0;
-    width: 100%; /* Full width */
-    text-align: center; /* Center content */
+    width: 100%;
+    text-align: center;
 }
 
 header h1 {
     margin-bottom: 10px;
-    font-size: 2.5em; /* Larger title size */
+    font-size: 2.5em;
 }
 
-/* Navigation styles */
 nav {
-    margin: 10px 0; /* Space above and below nav */
+    margin: 10px 0;
 }
 
 nav ul {
-    list-style: none; /* Remove bullet points */
-    padding: 0; /* Remove padding */
+    list-style: none;
+    padding: 0;
 }
 
 nav ul li {
-    display: inline; /* Display links inline */
-    margin: 0 15px; /* Spacing between links */
+    display: inline;
+    margin: 0 15px;
 }
 
 nav ul li a {
     color: white;
-    text-decoration: none; /* Remove underline */
-    font-weight: bold; /* Make links bold */
-    transition: color 0.3s; /* Smooth color transition */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
 }
 
 nav ul li a:hover {
-    color: #ffdd57; /* Bright yellow on hover */
+    color: #0000FF;
 }
 
-/* Main content styles */
-main {
-    flex: 1; /* Allow main to expand */
+.container {
+    flex: 1;
     display: flex;
-    flex-direction: column; /* Stack sections vertically */
-    align-items: center; /* Center content */
+    flex-direction: column;
+    align-items: center;
     padding: 20px;
 }
 
-/* Intro section styles */
 .intro {
-    text-align: center; /* Center text */
-    margin-bottom: 40px; /* Space below intro */
+    text-align: center;
+    margin-bottom: 40px;
 }
 
 .intro h2 {
-    font-size: 2em; /* Larger subtitle */
-    margin-bottom: 10px; /* Space below subtitle */
+    font-size: 2em;
+    margin-bottom: 10px;
 }
+
+p {
+    text-align: center;
+}
+
 h2 {
     text-align: center;
 }
 
 button {
-    align-items: center;
+    display: inline-block;
 }
-/* Game boxes styles */
+
 .game-boxes {
     width: 100%;
     padding: 20px 0;
@@ -91,96 +90,95 @@ button {
 .box-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive grid */
-    gap: 20px; /* Space between boxes */
-    max-width: 1200px; /* Limit width of the grid */
-    margin: 0 auto; /* Center the grid */
+    gap: 20px; /* Space between grid items */
+    max-width: 1200px; /* Maximum width for the container */
+    margin: 0 auto; /* Center the container */
+    padding: 20px; /* Add padding around the grid */
+    justify-content: center; /* Center the grid items */
 }
 
 .game-box {
-    background-color: white; /* White background for game boxes */
-    border: 1px solid #ddd; /* Light gray border */
-    border-radius: 8px; /* Rounded corners */
-    overflow: hidden; /* Clip overflow */
-    text-align: center; /* Center text */
-    padding: 10px; /* Padding inside the box */
-    transition: transform 0.2s, box-shadow 0.2s; /* Smooth scale effect and shadow */
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: center;
+    padding: 10px;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .game-box img {
-    max-width: 100%; /* Responsive image */
-    height: auto; /* Maintain aspect ratio */
+    max-width: 100%;
+    height: auto;
 }
 
 .game-box:hover {
-    transform: scale(1.05); /* Scale up on hover */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Community Highlights styles */
 .community-highlights {
-    text-align: center; /* Center text */
-    margin: 40px 0; /* Space above and below */
+    text-align: center;
+    margin: 40px 0;
 }
 
 .community-highlights ul {
-    list-style-type: none; /* Remove bullet points */
-    padding: 0; /* Remove padding */
+    list-style-type: none;
+    padding: 0;
 }
-
-.call-to-action button {
-    background-color: #555; /* Button color */
-    color: white;
-    border: none; /* No border */
-    padding: 10px 20px; /* Button padding */
-    border-radius: 5px; /* Rounded corners */
-    cursor: pointer; /* Pointer cursor */
-    font-size: 16px; /* Button font size */
-    transition: background-color 0.3s; /* Smooth background color transition */
-    display: block; /* Make button a block-level element */
-    margin: 0 auto; /* Center the button */
-}
-
 
 .call-to-action h2 {
-    margin-bottom: 10px; /* Space below the title */
+    margin-bottom: 10px;
 }
 
 .call-to-action button {
-    background-color: #555; /* Button color */
+    background-color: #555;
     color: white;
-    border: none; /* No border */
-    padding: 10px 20px; /* Button padding */
-    border-radius: 5px; /* Rounded corners */
-    cursor: pointer; /* Pointer cursor */
-    font-size: 16px; /* Button font size */
-    transition: background-color 0.3s; /* Smooth background color transition */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    display: block;
+    margin: 0 auto;
 }
 
 .call-to-action button:hover {
-    background-color: #777; /* Darker shade on hover */
+    background-color: #777;
 }
 
-/* Footer styles */
 footer {
-    background-color: #555; /* Same gray color for footer */
+    background-color: #555;
     color: white;
     text-align: center;
     padding: 10px 0;
-    width: 100%; /* Full width */
-}
-.platform-filter {
-    margin: 20px 0;
+    width: 100%;
 }
 
-.platform-filter select {
-    padding: 10px;
-    font-size: 16px;
-}
-.game-type-filter {
+.platform-filter, .game-category-filter, .game-type-filter, .game-mod-filter {
     margin: 20px 0;
+    width: 100%;
+    max-width: 600px; /* Limit the width for better readability */
 }
 
-.game-type-filter select {
+.platform-filter select,
+.game-category-filter select,
+.game-type-filter select,
+.game-mod-filter select {
     padding: 10px;
     font-size: 16px;
+    width: 100%; /* Full width for better UX */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+
+.platform-filter select:focus,
+.game-category-filter select:focus,
+.game-type-filter select:focus,
+.game-mod-filter select:focus {
+    border-color: #555; 
 }

@@ -1,56 +1,49 @@
-// Main filter function
 function filterByPlatformCategoryAndType() {
-    const platformFilter = document.getElementById("platform").value;
-    const gameCategoryFilter = document.getElementById("game-category").value; // Renamed to game-category
-    const gameTypeFilter = document.getElementById("game-type").value; // New game type (single-player, multiplayer)
-    const modStatusFilter = document.getElementById("mod-status").value;
-    const searchTerm = document.getElementById("search-input").value.toLowerCase(); // Get the search input
+    var platformFilter = document.getElementById("platform").value;
+    var gameCategoryFilter = document.getElementById("game-category").value;
+    var gameTypeFilter = document.getElementById("game-type").value;
+    var modStatusFilter = document.getElementById("mod-status").value;
+    var searchTerm = document.getElementById("search-input").value.toLowerCase();
 
-    const gameBoxes = document.querySelectorAll(".game-box");
+    var gameBoxes = document.querySelectorAll(".game-box");
 
-    gameBoxes.forEach(box => {
-        const platform = box.getAttribute("data-platform");
-        const category = box.getAttribute("data-category"); // Changed to data-category
-        const type = box.getAttribute("data-type"); // Single-player, multiplayer
-        const modStatus = box.getAttribute("data-modded");
-        const title = box.querySelector("h3").textContent.toLowerCase(); // Get the title text
+    for (var i = 0; i < gameBoxes.length; i++) {
+        var box = gameBoxes[i];
+        var platform = box.getAttribute("data-platform");
+        var category = box.getAttribute("data-category");
+        var type = box.getAttribute("data-type");
+        var modStatus = box.getAttribute("data-modded");
+        var title = box.querySelector("h3").textContent.toLowerCase();
 
-        // Check platform
-        const platformMatch = platformFilter === "all" || platform === platformFilter;
-        // Check game category (action, rpg, etc.)
-        const categoryMatch = gameCategoryFilter === "all" || category === gameCategoryFilter;
-        // Check game type (single-player, multiplayer)
-        const typeMatch = gameTypeFilter === "all" || type === gameTypeFilter;
-        // Check mod status
-        const modMatch = modStatusFilter === "all" || modStatus === modStatusFilter;
-        // Check search term
-        const searchMatch = title.includes(searchTerm); // Check if the title includes the search term
+        var platformMatch = platformFilter === "all" || platform === platformFilter;
+        var categoryMatch = gameCategoryFilter === "all" || category === gameCategoryFilter;
+        var typeMatch = gameTypeFilter === "all" || type === gameTypeFilter;
+        var modMatch = modStatusFilter === "all" || modStatus === modStatusFilter;
+        var searchMatch = title.indexOf(searchTerm) > -1;
 
-        // Show or hide the game box based on the filters
         if (platformMatch && categoryMatch && typeMatch && modMatch && searchMatch) {
-            box.style.display = "block"; // Show the box
+            box.style.display = "block";
         } else {
-            box.style.display = "none"; // Hide the box
+            box.style.display = "none";
         }
-    });
+    }
 }
 
-// Search function to handle form submission
 function searchGames(event) {
-    event.preventDefault(); // Prevent form submission
-    filterByPlatformCategoryAndType(); // Call the main filter function to update the view
+    event.preventDefault();
+    filterByPlatformCategoryAndType();
 }
 
-// Initialize filter function on page load and add event listeners
-document.addEventListener("DOMContentLoaded", () => {
-    filterByPlatformCategoryAndType(); // Initial call to filter on page load
+document.addEventListener("DOMContentLoaded", function() {
+    filterByPlatformCategoryAndType();
 
-    // Add event listeners to dropdowns
-    const filters = document.querySelectorAll("#platform, #game-category, #game-type, #mod-status");
-    filters.forEach(filter => {
-        filter.addEventListener("change", filterByPlatformCategoryAndType);
+    var filters = document.querySelectorAll("#platform, #game-category, #game-type, #mod-status");
+    for (var i = 0; i < filters.length; i++) {
+        filters[i].addEventListener("change", filterByPlatformCategoryAndType);
+    }
+
+    document.getElementById("search-form").addEventListener("submit", function(event) {
+        event.preventDefault();
+        filterByPlatformCategoryAndType();
     });
-
-    // Add event listener to search form
-    document.getElementById("search-form").addEventListener("submit", searchGames);
 });
