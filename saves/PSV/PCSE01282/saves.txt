@@ -1,2 +1,0 @@
-00000001.zip=Game & Game+ 
-00000002.zip=Game & NewGame+ 

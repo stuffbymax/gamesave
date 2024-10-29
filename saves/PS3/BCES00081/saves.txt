@@ -1,2 +1,0 @@
-00000001.zip=game completed save
-00172700.zip=platinum save

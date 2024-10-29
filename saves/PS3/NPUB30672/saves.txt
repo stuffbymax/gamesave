@@ -1,1 +1,0 @@
-00022215.zip=Start of the game with max power, max health and max mana.
