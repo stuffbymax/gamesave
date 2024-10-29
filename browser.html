@@ -6,8 +6,8 @@
     <meta name="description" content="Upload, share, and browse game saves with ease. Join our community of gamers!">
     <meta name="keywords" content="game saves, upload game saves, browse game saves, gaming community">
     <title>GameSaves - Home</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="./icons/save-image-icon-4.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="icon" href="./icons/save-image-icon-4.jpg" type="icon">
 </head>
 <body>
     <header>
@@ -17,7 +17,6 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="upload.html">Upload Save</a></li>
                 <li><a href="browser.html">Browse Saves</a></li>
-                <li><a href="./saves/">browser save (old)</a></li>
             </ul>
         </nav>
     </header>
@@ -25,8 +24,11 @@
     <div class="container">
         <section class="intro">
             <h2>Source for Game Saves</h2>
+            <br>
             <p>Upload, share, and browse game saves with ease.</p>
+            <br>
             <p>Plastation modded saves are from <a href="https://github.com/bucanero/apollo-saves/tree/master" target="_blank" rel="apollo-saves">apolo save tool online libary</a> but are stored in this project</p>
+            <br>
             <p>Disclaimer: I am not responsible for any damages, data loss, or issues that may arise from the use of these modded saves. <br> I recommend making backups of your save files before using any modded saves to protect your progress. Use them at your own risk.</p>
         </section>
         
@@ -86,22 +88,26 @@
             <select id="mod-status" onchange="filterByModStatus()">
                 <option value="all">All Saves</option>
                 <option value="modded">Modded</option>
-                <option value="non-modded">Non-Modded</option>
+                
             </select>
         </section>
 
-        <!-- Latest Game Saves Section -->
+        <!-- Game Saves Section -->
         <section class="game-boxes">
-            <h2>Latest Game Saves</h2>
+            <h2> Game Saves</h2>
+            <br>
             <div class="box-container">
-                <div class="game-box" data-platform="ps" data-category="action" data-type="single-player" data-modded="modded">
-                    <a href="./saves/PS3/BLES00269/00000001.zip"></a>
+                <div class="game-box" data-platform="ps3" data-category="action" data-type="single-player" data-modded="modded">
+                    <a href="./saves/PS3/BLES00269/BLES00269.zip">
                     <img src="./saves/PS3/BLES00269/ICON0.PNG" alt="PROTOTYPE (modded)">
-                    <h3>PROTOTYPE (PS3) - Action (Single Player, Modded)</h3>
+                </a>
+                    <h3>PROTOTYPE (PS3) - Action (Single Player, Modded) story mode completed 100%, new game plus available, all abilities enabled and fully upgraded and setup and profile savedata info</h3>
                 </div>
-                <div class="game-box" data-platform="ps2" data-category="racing" data-type="multiplayer" data-modded="modded">
-                    <img src="game2.jpg" alt="Game Title 2 for PlayStation 2 - Racing (Multiplayer, Modded)">
-                    <h3>Game Title 2 (PS2) - Racing (Multiplayer, Modded)</h3>
+                <div class="game-box" data-platform="ps3" data-category="action" data-type="multiplayer" data-modded="modded">
+                    <a href="./saves/PS3/BLES01532/BLES01532.zip">
+                    <img src="./saves/PS3/BLES01532/ICON0.PNG" alt="PROTOTYPE1 (modded)">
+                    </a>
+                    <h3>PROTOTYPE2 (PS3) - Action (Single Player, Modded) </h3>
                 </div>
                 <div class="game-box" data-platform="ps3" data-category="rpg" data-type="single-player" data-modded="modded">
                     <img src="game3.jpg" alt="Game Title 3 for PlayStation 3 - RPG (Single Player, Modded)">
@@ -115,6 +121,6 @@
         <p>&copy; 2024 stuffbymax | Martin Petik - MIT License.</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="./js/script.js"></script>
 </body>
 </html>
