@@ -1,5 +1,4 @@
 async function loadGameData() {
-  const gameData = [];
   const gameFiles = [
         "afro_samurai_3.json",
         "after_burner_climax_4.json",
@@ -356,106 +355,47 @@ async function loadGameData() {
         "zone_of_the_enders_hd_collection_355.json"
     ];
 
+  const urls = gameFiles.map(file => `./data/${file}`);
+
   try {
-      for (const gameFile of gameFiles) {
-          const response = await fetch(`./data/${gameFile}`);
-          if (!response.ok) {
-              throw new Error(`HTTP error! status: ${response.status} loading ${gameFile}`);
-          }
-          const game = await response.json();
-          gameData.push(game);
+    const responses = await Promise.all(urls.map(url => fetch(url)));
+    const jsonPromises = responses.map((response, index) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status} loading ${urls[index]}`);
       }
-      displayGames(gameData);
+      return response.json();
+    });
+    const gameData = await Promise.all(jsonPromises);
+    displayGames(gameData);
   } catch (error) {
-      console.error("Error loading game data:", error);
-      const boxContainer = document.querySelector('.box-container');
-      boxContainer.innerHTML = `<p>Error loading game data: ${error.message}</p>`;
+    console.error("Error loading game data:", error);
+    const boxContainer = document.querySelector('.box-container');
+    boxContainer.innerHTML = `<p>Error loading game data: ${error.message}</p>`;
   }
 }
 
 function createGameBox(game) {
-const gameBox = document.createElement('div');
-gameBox.classList.add('game-box');
-gameBox.dataset.platform = game.platform;
-gameBox.dataset.category = game.category;
-gameBox.dataset.type = game.type;
-gameBox.dataset.modded = game.modded;
-gameBox.innerHTML = `
+  const gameBox = document.createElement('div');
+  gameBox.classList.add('game-box');
+  gameBox.dataset.platform = game.platform;
+  gameBox.dataset.category = game.category;
+  gameBox.dataset.type = game.type;
+  gameBox.dataset.modded = game.modded;
+  gameBox.innerHTML = `
     <a href="${game.href}">
-        <img src="${game.img}" alt="${game.title} (${game.modded})">
+      <img src="${game.img}" alt="${game.title} (${game.modded})">
     </a>
     <h3>${game.title} .zip - ${game.category} (${game.type}, ${game.modded}) ${game.description}</h3>`;
-return gameBox;
+  return gameBox;
 }
 
 function displayGames(games) {
-const boxContainer = document.querySelector('.box-container');
-boxContainer.innerHTML = '';
-games.forEach(game => {
+  const boxContainer = document.querySelector('.box-container');
+  boxContainer.innerHTML = '';
+  games.forEach(game => {
     boxContainer.appendChild(createGameBox(game));
-});
+  });
 }
-
-function searchGames(event) {
-event.preventDefault();
-const searchTerm = document.getElementById('search-input').value.toLowerCase();
-const filteredGames = gameData.filter(game =>
-    game.title.toLowerCase().includes(searchTerm) ||
-    game.description.toLowerCase().includes(searchTerm)
-);
-displayGames(filteredGames);
-return false;
-}
-
-function filterByPlatformAndType() {
-const platformFilter = document.getElementById('platform').value;
-const categoryFilter = document.getElementById('game-category').value;
-const typeFilter = document.getElementById('game-type').value;
-const filteredGames = gameData.filter(game => {
-    const platformMatch = platformFilter === 'all' || game.platform === platformFilter;
-    const categoryMatch = categoryFilter === 'all' || game.category === categoryFilter;
-    const typeMatch = typeFilter === 'all' || game.type === typeFilter;
-    return platformMatch && categoryMatch && typeMatch;
-});
-displayGames(filteredGames);
-}
-
-function filterByModStatus() {
-const modStatusFilter = document.getElementById('mod-status').value;
-const filteredGames = gameData.filter(game => {
-    const modStatusMatch = modStatusFilter === 'all' || game.modded === modStatusFilter;
-    return modStatusMatch;
-});
-displayGames(filteredGames);
-}
-
-function addFilterOptions(selectId, dataKey) {
-const selectElement = document.getElementById(selectId);
-const allOption = document.createElement('option');
-allOption.value = 'all';
-allOption.textContent = 'All';
-selectElement.appendChild(allOption);
-
-const uniqueValues = [...new Set(gameData.map(game => game[dataKey]))];
-uniqueValues.forEach(value => {
-    const option = document.createElement('option');
-    option.value = value;
-    option.textContent = value;
-    selectElement.appendChild(option);
-});
-}
-
-// Call loadGameData when the page loads
-loadGameData();  // No need for async/await or .then anymore
-
-
-// Event Listeners:  Add these *after* `loadGameData()` since the data is
-// now loaded synchronously:
-document.getElementById('search-form').addEventListener('submit', searchGames);
-document.getElementById('platform').addEventListener('change', filterByPlatformAndType);
-document.getElementById('game-category').addEventListener('change', filterByPlatformAndType);
-document.getElementById('game-type').addEventListener('change', filterByPlatformAndType);
-document.getElementById('mod-status').addEventListener('change', filterByModStatus);
 
 function filterByPlatformCategoryAndType() {
     var platformFilter = document.getElementById("platform").value;
@@ -494,15 +434,11 @@ function searchGames(event) {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    filterByPlatformCategoryAndType();
+    // Load games after the DOM is fully loaded
+    loadGameData();
 
+    
+    document.getElementById("search-form").addEventListener("submit", searchGames);
     var filters = document.querySelectorAll("#platform, #game-category, #game-type, #mod-status");
-    for (var i = 0; i < filters.length; i++) {
-        filters[i].addEventListener("change", filterByPlatformCategoryAndType);
-    }
-
-    document.getElementById("search-form").addEventListener("submit", function(event) {
-        event.preventDefault();
-        filterByPlatformCategoryAndType();
-    });
+    filters.forEach(filter => filter.addEventListener("change", filterByPlatformCategoryAndType));
 });
