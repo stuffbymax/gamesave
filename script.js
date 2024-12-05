@@ -355,24 +355,38 @@ async function loadGameData() {
         "zone_of_the_enders_hd_collection_355.json"
     ];
 
+ 
   const urls = gameFiles.map(file => `./data/${file}`);
+  const boxContainer = document.querySelector('.box-container');
+  boxContainer.innerHTML = ''; // Clear previous content
 
-  try {
-    const responses = await Promise.all(urls.map(url => fetch(url)));
-    const jsonPromises = responses.map((response, index) => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status} loading ${urls[index]}`);
-      }
-      return response.json();
-    });
-    const gameData = await Promise.all(jsonPromises);
-    displayGames(gameData);
-  } catch (error) {
-    console.error("Error loading game data:", error);
-    const boxContainer = document.querySelector('.box-container');
-    boxContainer.innerHTML = `<p>Error loading game data: ${error.message}</p>`;
+  const MAX_CONCURRENT_REQUESTS = 10; 
+
+  for (let i = 0; i < urls.length; i += MAX_CONCURRENT_REQUESTS) {
+    const chunk = urls.slice(i, i + MAX_CONCURRENT_REQUESTS);
+    try {
+      const responses = await Promise.all(chunk.map(url => fetch(url)));
+      const gameDataChunk = await Promise.all(responses.map(async (response, index) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status} loading ${chunk[index]}`);
+        }
+        return response.json();
+      }));
+
+      gameDataChunk.forEach(game => {
+        boxContainer.appendChild(createGameBox(game));
+      });
+
+    } catch (error) {
+      console.error("Error loading game data chunk:", error);
+      const errorBox = document.createElement('div');
+      errorBox.classList.add('game-box', 'error');
+      errorBox.textContent = `Error loading some games: ${error.message}`;
+      boxContainer.appendChild(errorBox);
+    }
   }
 }
+
 
 function createGameBox(game) {
   const gameBox = document.createElement('div');
@@ -389,13 +403,8 @@ function createGameBox(game) {
   return gameBox;
 }
 
-function displayGames(games) {
-  const boxContainer = document.querySelector('.box-container');
-  boxContainer.innerHTML = '';
-  games.forEach(game => {
-    boxContainer.appendChild(createGameBox(game));
-  });
-}
+
+
 
 function filterByPlatformCategoryAndType() {
     var platformFilter = document.getElementById("platform").value;
@@ -412,7 +421,10 @@ function filterByPlatformCategoryAndType() {
         var category = box.getAttribute("data-category");
         var type = box.getAttribute("data-type");
         var modStatus = box.getAttribute("data-modded");
-        var title = box.querySelector("h3").textContent.toLowerCase();
+
+        // Handle potentially missing title element
+        var titleElement = box.querySelector("h3");
+        var title = titleElement ? titleElement.textContent.toLowerCase() : "";
 
         var platformMatch = platformFilter === "all" || platform === platformFilter;
         var categoryMatch = gameCategoryFilter === "all" || category === gameCategoryFilter;
@@ -428,16 +440,14 @@ function filterByPlatformCategoryAndType() {
     }
 }
 
+
 function searchGames(event) {
     event.preventDefault();
     filterByPlatformCategoryAndType();
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    // Load games after the DOM is fully loaded
     loadGameData();
-
-    
     document.getElementById("search-form").addEventListener("submit", searchGames);
     var filters = document.querySelectorAll("#platform, #game-category, #game-type, #mod-status");
     filters.forEach(filter => filter.addEventListener("change", filterByPlatformCategoryAndType));
