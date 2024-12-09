@@ -1,5 +1,5 @@
-async function loadGameData() {
-  const gameFiles = [
+function loadGameData() {
+    var gameFiles = [
         "afro_samurai_3.json",
         "after_burner_climax_4.json",
         "akibas_trip_undead_undressed_5.json",
@@ -354,56 +354,81 @@ async function loadGameData() {
         "young_justice_legacy_354.json",
         "zone_of_the_enders_hd_collection_355.json"
     ];
+    var boxContainer = document.querySelector('.box-container');
+    boxContainer.innerHTML = '';
 
- 
-  const urls = gameFiles.map(file => `./data/${file}`);
-  const boxContainer = document.querySelector('.box-container');
-  boxContainer.innerHTML = ''; // Clear previous content
+    var loadedCount = 0;
+    var totalGames = gameFiles.length;
 
-  const MAX_CONCURRENT_REQUESTS = 10; 
-
-  for (let i = 0; i < urls.length; i += MAX_CONCURRENT_REQUESTS) {
-    const chunk = urls.slice(i, i + MAX_CONCURRENT_REQUESTS);
-    try {
-      const responses = await Promise.all(chunk.map(url => fetch(url)));
-      const gameDataChunk = await Promise.all(responses.map(async (response, index) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status} loading ${chunk[index]}`);
+    function loadGame() {
+        if (loadedCount >= totalGames) {
+            return; 
         }
-        return response.json();
-      }));
 
-      gameDataChunk.forEach(game => {
-        boxContainer.appendChild(createGameBox(game));
-      });
+        var file = gameFiles[loadedCount];
+        var url = './data/' + file;
 
-    } catch (error) {
-      console.error("Error loading game data chunk:", error);
-      const errorBox = document.createElement('div');
-      errorBox.classList.add('game-box', 'error');
-      errorBox.textContent = `Error loading some games: ${error.message}`;
-      boxContainer.appendChild(errorBox);
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);
+
+        xhr.onload = function () {
+            if (xhr.status >= 200 && xhr.status < 300) {
+                try {
+                    var game = JSON.parse(xhr.responseText);
+                    boxContainer.appendChild(createGameBox(game));
+                } catch (e) {
+                    console.error("JSON parsing error:", e);
+                    displayError('Error parsing ' + file);
+                }
+            } else {
+                console.error("Error loading:", url, xhr.status);
+                displayError('Error loading ' + file);
+            }
+            loadedCount++;
+            setTimeout(loadGame, 100); 
+        };
+
+        xhr.onerror = function () {
+            console.error("Network error loading:", url);
+            displayError('Network error loading ' + file);
+            loadedCount++;
+            setTimeout(loadGame, 100); 
+        };
+
+        xhr.send();
     }
-  }
+
+    function displayError(message) {
+        var errorBox = document.createElement('div');
+        errorBox.classList.add('game-box', 'error');
+        errorBox.textContent = message;
+        boxContainer.appendChild(errorBox);
+    }
+
+    loadGame(); // Start loading
 }
 
 
 function createGameBox(game) {
-  const gameBox = document.createElement('div');
-  gameBox.classList.add('game-box');
-  gameBox.dataset.platform = game.platform;
-  gameBox.dataset.category = game.category;
-  gameBox.dataset.type = game.type;
-  gameBox.dataset.modded = game.modded;
-  gameBox.innerHTML = `
-    <a href="${game.href}">
-      <img src="${game.img}" alt="${game.title} (${game.modded})">
-    </a>
-    <h3>${game.title} .zip - ${game.category} (${game.type}, ${game.modded}) ${game.description}</h3>`;
-  return gameBox;
+    var gameBox = document.createElement('div');
+    gameBox.classList.add('game-box');
+    gameBox.dataset.platform = game.platform ?? "Unknown";
+    gameBox.dataset.category = game.category ?? "Unknown";
+    gameBox.dataset.type = game.type ?? "Unknown";
+    gameBox.dataset.modded = game.modded ?? "Unknown";
+
+    gameBox.innerHTML = `
+        <a href="${game.href ?? "#"}"></a>  
+        <h3>${game.title ?? "Unknown Title"} .zip - ${game.category ?? "Unknown"} (${game.type ?? "Unknown"}, ${game.modded ?? "Unknown"}) ${game.description ?? ""}</h3>`;
+
+    if (game.img) {
+        const img = document.createElement('img');
+        img.src = game.img;
+        img.alt = game.title ?? "Unknown Title";
+        gameBox.querySelector('a').appendChild(img); 
+    }
+    return gameBox;
 }
-
-
 
 
 function filterByPlatformCategoryAndType() {
