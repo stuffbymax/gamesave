@@ -4,4 +4,4 @@
 - add demos
 - after that idk
 
-Demons Souls (PS3)
+Diablo III (PS3)
