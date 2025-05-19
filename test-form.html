@@ -1,0 +1,87 @@
+<form id="game-upload-request-form" enctype="multipart/form-data" method="POST" action="/submit-request">
+  <label for="title">Game Title *</label>
+  <input type="text" id="title" name="title" required />
+
+  <label for="platform">Platform *</label>
+  <select id="platform" name="platform" required>
+    <option value="">Select platform</option>
+    <option value="ps3">PlayStation 3</option>
+    <option value="ps2">PlayStation 2</option>
+    <option value="pc">PC</option>
+    <!-- Add other platforms -->
+  </select>
+
+  <label for="developer">Developer</label>
+  <input type="text" id="developer" name="developer" />
+
+  <label for="publisher">Publisher</label>
+  <input type="text" id="publisher" name="publisher" />
+
+  <label for="release-year">Release Year</label>
+  <input type="number" id="release-year" name="release_year" min="1970" max="2025" />
+
+  <label for="category">Game Category</label>
+  <select id="category" name="category">
+    <option value="">Select category</option>
+    <option value="action">Action</option>
+    <option value="rpg">RPG</option>
+    <option value="strategy">Strategy</option>
+    <!-- More categories -->
+  </select>
+
+  <label for="game-type">Game Type</label>
+  <select id="game-type" name="game_type">
+    <option value="">Select type</option>
+    <option value="single-player">Single Player</option>
+    <option value="co-op">Co-op</option>
+    <option value="local-multiplayer">Local Multiplayer</option>
+    <option value="online-multiplayer">Online Multiplayer</option>
+  </select>
+
+  <label for="multiplayer-status">Multiplayer Status</label>
+  <select id="multiplayer-status" name="multiplayer_status">
+    <option value="">Select multiplayer status</option>
+    <option value="none">None</option>
+    <option value="local">Local</option>
+    <option value="online">Online</option>
+    <option value="both">Both</option>
+  </select>
+
+  <label>Request Type *</label>
+  <input type="radio" id="request-info" name="request_type" value="request" required />
+  <label for="request-info">Request Game Info</label>
+  <input type="radio" id="upload-file" name="request_type" value="upload" />
+  <label for="upload-file">Upload Game File</label>
+
+  <div id="file-upload-section" style="display:none;">
+    <label for="game-file">Upload Game File</label>
+    <input type="file" id="game-file" name="game_file" accept=".pkg,.iso" />
+  </div>
+
+  <label for="comments">Additional Comments</label>
+  <textarea id="comments" name="comments" rows="4"></textarea>
+
+  <label for="email">Your Email (optional)</label>
+  <input type="email" id="email" name="email" />
+
+  <button type="submit">Submit</button>
+</form>
+
+<script>
+  const requestInfoRadio = document.getElementById('request-info');
+  const uploadFileRadio = document.getElementById('upload-file');
+  const fileUploadSection = document.getElementById('file-upload-section');
+
+  function toggleFileUpload() {
+    if (uploadFileRadio.checked) {
+      fileUploadSection.style.display = 'block';
+      document.getElementById('game-file').required = true;
+    } else {
+      fileUploadSection.style.display = 'none';
+      document.getElementById('game-file').required = false;
+    }
+  }
+
+  requestInfoRadio.addEventListener('change', toggleFileUpload);
+  uploadFileRadio.addEventListener('change', toggleFileUpload);
+</script>
